@@ -1,15 +1,10 @@
 // When You click the Start Button the quiz starts
 
-
-
-
 // Timer starts
+var secondsLeft = 60;
 
-if () {
-
-} else () {
-
-};
+function setTime() {}
+var timeInterval;
 
 // Presented with a question
 // prompt
