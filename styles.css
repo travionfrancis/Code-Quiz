@@ -1,5 +1,6 @@
 #quiz {
   text-align: center;
+  clear: both;
 }
 
 #customButt {
@@ -8,9 +9,9 @@
 }
 
 #prevHighscores {
-  text-align: left;
+  float: left;
 }
 
 #count {
-  text-align: right;
+  float: right;
 }
