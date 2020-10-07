@@ -1,8 +1,16 @@
-.center {
+#quiz {
   text-align: center;
 }
 
-.customButt {
+#customButt {
   background-color: blueviolet;
   color: white;
+}
+
+#prevHighscores {
+  text-align: left;
+}
+
+#count {
+  text-align: right;
 }

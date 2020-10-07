@@ -7,7 +7,11 @@
     <title>Code Quiz</title>
   </head>
   <body>
-    <div class="center">
+    <span id="prevHighscores">View Highscores</span>
+    <!--Search up a way to Display previous scores that you've gotten-->
+    <br />
+    <span id="count">60</span> seconds
+    <div id="quiz">
       <h1>Welcome to the Coding Quiz Challenge!</h1>
       <h3>
         In this Quiz, we will go over the basics of Coding and test your
@@ -15,8 +19,9 @@
         will have a combined time of 60 seconds to completely finish the Quiz,
         so move fast!
       </h3>
-      <button class="customButt">Let's Play!</button>
+      <button id="customButt" onclick="start()">Let's Play!</button>
     </div>
+    <div id="results"></div>
 
     <script src="script.js"></script>
   </body>
