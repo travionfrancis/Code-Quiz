@@ -22,12 +22,86 @@ function startTimer() {
     }
   }, 1000);
 }
+
 function start() {
   document.getElementById("count").style = "color:black;";
   startTimer();
 }
 
-//eventually an Eventlistener will be needed.
+const myQuestions = [
+  {
+    question: "What's another name for a folder in a computer's file system?",
+    answers: {
+      a: "A Myspace",
+      b: "A Divison",
+      c: "A Directory",
+      d: "A File",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "What do we call a directory that is being tracked by git?",
+    answers: {
+      a: "A Repo",
+      b: "A PWD",
+      c: "A Master Branch",
+      d: "An Init",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question:
+      "What do you type in the terminal to find out which directory you are currently in?",
+    answers: {
+      a: "cd",
+      b: "whereami",
+      c: "rm -R",
+      d: "pwd",
+    },
+    correctAnswer: "d",
+  },
+  {
+    question:
+      "What is a key value pair that adds extra information to an HTML element?",
+    answers: {
+      a: "a Tag",
+      b: "An Attribute",
+      c: "An ID",
+      d: "Content",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "What does HTML stand for?",
+    answers: {
+      a: "Happy Text Markup Language",
+      b: "Hyper Text Markup Language",
+      c: "Hip Type Mashup Language",
+      d: "Hyper Type Markup Language",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "What does CSS stand for?",
+    answers: {
+      a: "Common Style Sheets",
+      b: "Circular Style Sheets",
+      c: "Cascading Style Sheets",
+      d: "Canned Style System",
+    },
+    correctAnswer: "c",
+  },
+];
+
+// 5. What does HTML stand for?
+// 1. Happy Text Markup Language 2.  Hyper Text Markup Language 3.  Hip Type Mashup Language 4. Hyper Type Markup Language
+// 2
+
+// 6. What does CSS stand for?
+// 1. Common Style Sheets 2. Circular Style Sheets 3. Cascading Style Sheets 4. Canned Style System
+// 3
+
+// Eventually an Eventlistener will be needed.
 
 // Timer starts
 
