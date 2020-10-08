@@ -28,7 +28,7 @@ function start() {
   startTimer();
 }
 
-const myQuestions = [
+const questions = [
   {
     question: "What's another name for a folder in a computer's file system?",
     answers: {
@@ -93,25 +93,19 @@ const myQuestions = [
   },
 ];
 
-// 5. What does HTML stand for?
-// 1. Happy Text Markup Language 2.  Hyper Text Markup Language 3.  Hip Type Mashup Language 4. Hyper Type Markup Language
-// 2
-
-// 6. What does CSS stand for?
-// 1. Common Style Sheets 2. Circular Style Sheets 3. Cascading Style Sheets 4. Canned Style System
-// 3
+// What I need to do next:
+// When the button is clicked, it starts the quiz with the first question.
+// Displaying Only question at a time, and not a list.
+// Time is decreased when answered wrong.
+// When a question is answered correct, it displays CORRECT at the bottom of the page. Same for when answered incorrectly, WRONG.
+// Score out of 6 being logged
+// View Previous Highscores function, with initials
 
 // Eventually an Eventlistener will be needed.
-
 // Timer starts
-
 // Presented with a question
 // prompt
-
 // answer the question and presented with another question
-
 // if i answer the question incorrectly the time is subtracted
-
 //When all questions are answered  or the timer reaches 0, the game is over.
-
 //When the game is over then i can save my initials and score
