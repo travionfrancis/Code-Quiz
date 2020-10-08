@@ -1,34 +1,28 @@
 //DOM Elements
 var buttonStart = document.getElementById("customButt");
-var resultsEl = document.getElementById("results");
+var quizResultsEl = document.getElementById("results");
 var quizEl = document.getElementById("quiz");
+var quesDisplay = document.getElementById("questions");
+var ansDisplay = document.getElementById("answers");
 
 // When You click the Start Button the quiz starts
+var score = 0;
+var correctAns = [];
+var incorrectAns = [];
 
-function startTimer() {
-  var counter = 60;
-  setInterval(function () {
-    counter--;
-    if (counter >= 0) {
-      span = document.getElementById("count");
-      span.innerHTML = counter;
-      //quiz should take to the first question
-      // take from 1st Kahoot game
-    }
-    if (counter === 0) {
-      alert("Sorry, Out of Time! Try again Next Time!");
-      clearInterval(counter);
-      // add when the time goes out you return to the Beginning page.
-    }
-  }, 1000);
+function askQuestion(question, index) {
+  var answer = prompt(question[0], "");
+  if (answer == question[1]) {
+    alert("Correct!");
+    score++;
+    correctAns = question;
+  } else {
+    incorrectAns.push(index);
+    alert("Sorry. The correct answer is " + question[1]);
+  }
 }
 
-function start() {
-  document.getElementById("count").style = "color:black;";
-  startTimer();
-}
-
-const questions = [
+const allQuestions = [
   {
     question: "What's another name for a folder in a computer's file system?",
     answers: {
@@ -92,6 +86,32 @@ const questions = [
     correctAnswer: "c",
   },
 ];
+
+function startTimer() {
+  var counter = 60;
+  setInterval(function () {
+    counter--;
+    if (counter >= 0) {
+      span = document.getElementById("count");
+      span.innerHTML = "Time Remaining: " + counter + " seconds";
+
+      //quiz should take to the first question
+      // take from 1st Kahoot game
+    }
+    if (counter === 0) {
+      alert("Sorry, Out of Time! Try again Next Time!");
+      clearInterval(counter);
+      location.reload();
+      return false;
+      // add when the time goes out you return to the Beginning page.
+    }
+  }, 1000);
+}
+
+function start() {
+  document.getElementById("count").style = "color:black;";
+  startTimer();
+}
 
 // What I need to do next:
 // When the button is clicked, it starts the quiz with the first question.
