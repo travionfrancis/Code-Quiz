@@ -1,5 +1,5 @@
 //DOM Elements
-var buttonStart = document.getElementById("customButt");
+var buttonStart = document.getElementById("customBtn");
 var quizResultsEl = document.getElementById("results");
 var quizEl = document.getElementById("quiz");
 var quesDisplay = document.getElementById("questions");
@@ -9,6 +9,7 @@ var ansDisplay = document.getElementById("answers");
 var score = 0;
 var correctAns = [];
 var incorrectAns = [];
+var currentQuestionindex = 0;
 
 function askQuestion(question, index) {
   var answer = prompt(question[0], "");
@@ -25,13 +26,8 @@ function askQuestion(question, index) {
 const allQuestions = [
   {
     question: "What's another name for a folder in a computer's file system?",
-    answers: {
-      a: "A Myspace",
-      b: "A Divison",
-      c: "A Directory",
-      d: "A File",
-    },
-    correctAnswer: "c",
+    answers: ["A Myspace", "A Divison", "A Directory", "A File"],
+    correctAnswer: "A Directory",
   },
   {
     question: "What do we call a directory that is being tracked by git?",
@@ -108,10 +104,25 @@ function startTimer() {
   }, 1000);
 }
 
-function start() {
-  document.getElementById("count").style = "color:black;";
-  startTimer();
+function getQuestion() {
+  var currentQuestion = allQuestions[currentQuestionindex];
+  quesDisplay.textContent = currentQuestion.question;
+  currentQuestion.answers.forEach(function (answer) {
+    var answerChoice = document.createElement("button");
+    answerChoice.textContent = answer;
+    // add eventlistener to each button and listen to a click
+    // add a CSS class for each button
+    // create a function
+    ansDisplay.appendChild(answerChoice);
+  });
 }
+
+function start() {
+  startTimer();
+  getQuestion();
+}
+
+buttonStart.addEventListener("click", start);
 
 // What I need to do next:
 // When the button is clicked, it starts the quiz with the first question.
