@@ -4,12 +4,53 @@ var quizResultsEl = document.getElementById("results");
 var quizEl = document.getElementById("quiz");
 var quesDisplay = document.getElementById("questions");
 var ansDisplay = document.getElementById("answers");
+var container = document.getElementsByClassName("container");
 
 // When You click the Start Button the quiz starts
 var score = 0;
 var correctAns = [];
 var incorrectAns = [];
 var currentQuestionindex = 0;
+var gameTimerId;
+var counter = 60;
+const allQuestions = [
+  {
+    question: "What's another name for a folder in a computer's file system?",
+    answers: ["A Myspace", "A Divison", "A Directory", "A File"],
+  },
+  {
+    question: "What do we call a directory that is being tracked by git?",
+    answers: ["A Repo", "A PWD", "A Master Branch", "An Init"],
+  },
+  {
+    question:
+      "What do you type in the terminal to find out which directory you are currently in?",
+    answers: ["cd", "whereami", "rm -R", "pwd"],
+  },
+  {
+    question:
+      "What is a key value pair that adds extra information to an HTML element?",
+    answers: ["a Tag", "An Attribute", "An ID", "Content"],
+  },
+  {
+    question: "What does HTML stand for?",
+    answers: [
+      "Happy Text Markup Language",
+      "Hyper Text Markup Language",
+      "Hip Type Mashup Language",
+      "Hyper Type Markup Language",
+    ],
+  },
+  {
+    question: "What does CSS stand for?",
+    answers: [
+      "Common Style Sheets",
+      "Circular Style Sheets",
+      "Cascading Style Sheets",
+      "Canned Style System",
+    ],
+  },
+];
 
 function askQuestion(question, index) {
   var answer = prompt(question[0], "");
@@ -23,89 +64,69 @@ function askQuestion(question, index) {
   }
 }
 
-const allQuestions = [
-  {
-    question: "What's another name for a folder in a computer's file system?",
-    answers: ["A Myspace", "A Divison", "A Directory", "A File"],
-    correctAnswer: "A Directory",
-  },
-  {
-    question: "What do we call a directory that is being tracked by git?",
-    answers: {
-      a: "A Repo",
-      b: "A PWD",
-      c: "A Master Branch",
-      d: "An Init",
-    },
-    correctAnswer: "a",
-  },
-  {
-    question:
-      "What do you type in the terminal to find out which directory you are currently in?",
-    answers: {
-      a: "cd",
-      b: "whereami",
-      c: "rm -R",
-      d: "pwd",
-    },
-    correctAnswer: "d",
-  },
-  {
-    question:
-      "What is a key value pair that adds extra information to an HTML element?",
-    answers: {
-      a: "a Tag",
-      b: "An Attribute",
-      c: "An ID",
-      d: "Content",
-    },
-    correctAnswer: "b",
-  },
-  {
-    question: "What does HTML stand for?",
-    answers: {
-      a: "Happy Text Markup Language",
-      b: "Hyper Text Markup Language",
-      c: "Hip Type Mashup Language",
-      d: "Hyper Type Markup Language",
-    },
-    correctAnswer: "b",
-  },
-  {
-    question: "What does CSS stand for?",
-    answers: {
-      a: "Common Style Sheets",
-      b: "Circular Style Sheets",
-      c: "Cascading Style Sheets",
-      d: "Canned Style System",
-    },
-    correctAnswer: "c",
-  },
-];
+function startQuestions() {}
+//didnt write up to here
+// array for answers
+var correct = [2, 0, 3, 1, 1, 2];
 
+for (let i = 1; i <= 4; i++) {
+  document
+    .getElementById("answer-" + i)
+    .parentElement.addEventListener("click", function () {
+      chosen = i;
+      compareAnswer();
+      updateQuestion();
+    });
+}
+
+function displayQuestion() {
+  // select a random question
+  // random index
+  randIndex = Math.floor(Math.random() * allQuestions.length);
+
+  // remove question from questions list
+  allQuestions = allQuestions.splice(randIndex, 1);
+
+  // put question on page
+  document.querySelector(".question").innerHTML = allQuestions[0].q;
+
+  // put choices on page
+  for (let i = 0; i < 4; i++) {
+    document.getElementById("answer-" + (i + 1)).innerHTML =
+      allQuestions[0].a[i];
+  }
+
+  // remove actual answer from answers list
+  answer = correct.splice(randIndex, 1);
+
+  chosen = 0;
+}
+// to here
 function startTimer() {
-  var counter = 60;
-  setInterval(function () {
-    counter--;
-    if (counter >= 0) {
-      span = document.getElementById("count");
-      span.innerHTML = "Time Remaining: " + counter + " seconds";
+  gameTimerId = setInterval(gameTimer, 1000);
+}
 
-      //quiz should take to the first question
-      // take from 1st Kahoot game
-    }
-    if (counter === 0) {
-      alert("Sorry, Out of Time! Try again Next Time!");
-      clearInterval(counter);
-      location.reload();
-      return false;
-      // add when the time goes out you return to the Beginning page.
-    }
-  }, 1000);
+function gameTimer() {
+  counter--;
+  if (counter >= 0) {
+    span = document.getElementById("count");
+    span.innerHTML = "Time Remaining: " + counter + " seconds";
+
+    //quiz should take to the first question
+    // take from 1st Kahoot game
+  }
+  if (counter === 0) {
+    alert("Sorry, Out of Time! Try again Next Time!");
+    end();
+    location.reload();
+    return false;
+    // add when the time goes out you return to the Beginning page.
+  }
 }
 
 function getQuestion() {
   var currentQuestion = allQuestions[currentQuestionindex];
+  console.log(currentQuestion);
   quesDisplay.textContent = currentQuestion.question;
   currentQuestion.answers.forEach(function (answer) {
     var answerChoice = document.createElement("button");
@@ -120,6 +141,13 @@ function getQuestion() {
 function start() {
   startTimer();
   getQuestion();
+}
+
+function end() {
+  clearInterval(gameTimerId);
+  // ask for Username
+  // Reset score
+  // Fails the quiz
 }
 
 buttonStart.addEventListener("click", start);
@@ -139,4 +167,4 @@ buttonStart.addEventListener("click", start);
 // answer the question and presented with another question
 // if i answer the question incorrectly the time is subtracted
 //When all questions are answered  or the timer reaches 0, the game is over.
-//When the game is over then i can save my initials and score
+//When the game is over then i can save my initials and score.

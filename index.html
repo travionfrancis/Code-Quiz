@@ -8,7 +8,9 @@
   </head>
   <body>
     <p id="float">
-      <span id="prevHighscores">View Highscores</span>
+      <span id="prevHighscores"
+        ><a href="highscores.html">View Highscores</a></span
+      >
       <!--Search up a way to Display previous scores that you've gotten-->
       <span id="count">60 seconds</span>
     </p>
@@ -23,9 +25,43 @@
       </h3>
       <button id="customBtn">Let's Play!</button>
     </div>
-    <h2 id="questions"></h2>
-    <div id="answers"></div>
+
+
+    <h2 id="questions">
+      <div class="container">
+        <div id="timer"></div>
+        <!-- Questions -->
+        <div class="question-container">
+          <div class="question"></div>
+        </div>
+
+    </h2>
+
+
+
+
+
+  <!-- Answers -->
+          <div class="answers">
+            <div class="answer">
+              <div class="answer-text" id="answer-1"></div>
+            </div>
+            <div class="answer">
+              <div class="answer-text" id="answer-2"></div>
+            </div>
+            <div class="answer">
+              <div class="answer-text" id="answer-3"></div>
+            </div>
+            <div class="answer">
+              <div class="answer-text" id="answer-4"></div>
+            </div>
+          </div>
+        </div>
     <div id="results"></div>
+
+
+
     <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </body>
 </html>
