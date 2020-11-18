@@ -13,24 +13,30 @@ var incorrectAns = [];
 var currentQuestionindex = 0;
 var gameTimerId;
 var counter = 60;
+
+var correct = [2, 0, 3, 1, 1, 2];
 const allQuestions = [
   {
     question: "What's another name for a folder in a computer's file system?",
     answers: ["A Myspace", "A Divison", "A Directory", "A File"],
+    correctAns: 2
   },
   {
     question: "What do we call a directory that is being tracked by git?",
     answers: ["A Repo", "A PWD", "A Master Branch", "An Init"],
+    correctAns: 0
   },
   {
     question:
       "What do you type in the terminal to find out which directory you are currently in?",
     answers: ["cd", "whereami", "rm -R", "pwd"],
+    correctAns: 3
   },
   {
     question:
       "What is a key value pair that adds extra information to an HTML element?",
     answers: ["a Tag", "An Attribute", "An ID", "Content"],
+    correctAns: 1
   },
   {
     question: "What does HTML stand for?",
@@ -40,6 +46,7 @@ const allQuestions = [
       "Hip Type Mashup Language",
       "Hyper Type Markup Language",
     ],
+    correctAns: 1
   },
   {
     question: "What does CSS stand for?",
@@ -49,6 +56,7 @@ const allQuestions = [
       "Cascading Style Sheets",
       "Canned Style System",
     ],
+    correctAns: 2
   },
 ];
 
@@ -85,16 +93,24 @@ function displayQuestion() {
   randIndex = Math.floor(Math.random() * allQuestions.length);
 
   // remove question from questions list
-  allQuestions = allQuestions.splice(randIndex, 1);
+  var question = allQuestions.splice(randIndex, 1)[0]; //{}
 
+  console.log(question);
   // put question on page
-  document.querySelector(".question").innerHTML = allQuestions[0].q;
+  document.querySelector(".question").textContent = question.question;
 
-  // put choices on page
-  for (let i = 0; i < 4; i++) {
-    document.getElementById("answer-" + (i + 1)).innerHTML =
-      allQuestions[0].a[i];
+    
+    
+// put choices on page
+  var answers = question.answers;
+  console.log(answers);
+  for (var i = 0; i < answers.length; i++ ) {
+    document.querySelector("#answer-" + (i + 1)).textContent = answers[i];
   }
+
+
+
+
 
   // remove actual answer from answers list
   answer = correct.splice(randIndex, 1);
@@ -124,23 +140,10 @@ function gameTimer() {
   }
 }
 
-function getQuestion() {
-  var currentQuestion = allQuestions[currentQuestionindex];
-  console.log(currentQuestion);
-  quesDisplay.textContent = currentQuestion.question;
-  currentQuestion.answers.forEach(function (answer) {
-    var answerChoice = document.createElement("button");
-    answerChoice.textContent = answer;
-    // add eventlistener to each button and listen to a click
-    // add a CSS class for each button
-    // create a function
-    ansDisplay.appendChild(answerChoice);
-  });
-}
 
 function start() {
   startTimer();
-  getQuestion();
+  displayQuestion();
 }
 
 function end() {
