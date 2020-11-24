@@ -143,6 +143,7 @@ function gameTimer() {
 
 
 function start() {
+  this.style.display = "none";
   startTimer();
   displayQuestion();
 }
@@ -154,7 +155,7 @@ function end() {
   // Fails the quiz
 }
 
-buttonStart.addEventListener("click", start);
+buttonStart.addEventListener("click", start); 
 
 // What I need to do next:
 // When the button is clicked, it starts the quiz with the first question.
