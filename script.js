@@ -77,15 +77,15 @@ function startQuestions() {}
 // array for answers
 var correct = [2, 0, 3, 1, 1, 2];
 
-for (let i = 1; i <= 4; i++) {
-  document
-    .getElementById("answer-" + i)
-    .parentElement.addEventListener("click", function () {
-      chosen = i;
-      compareAnswer();
-      updateQuestion();
-    });
-}
+// for (let i = 1; i <= 4; i++) {
+//   document
+//     .getElementById("answer-" + i)
+//     .parentElement.addEventListener("click", function () {
+//       chosen = i;
+//       compareAnswer();
+//       updateQuestion();
+//     });
+// }
 
 function displayQuestion() {
   // select a random question
@@ -95,7 +95,6 @@ function displayQuestion() {
   // remove question from questions list
   var question = allQuestions.splice(randIndex, 1)[0]; //{}
 
-  console.log(question);
   // put question on page
   document.querySelector(".question").textContent = question.question;
 
@@ -103,9 +102,20 @@ function displayQuestion() {
     
 // put choices on page
   var answers = question.answers;
-  console.log(answers);
-  for (var i = 0; i < answers.length; i++ ) {
-    document.querySelector("#answer-" + (i + 1)).textContent = answers[i];
+
+  for (var i = 0; i < answers.length; i++) {
+    
+    // document.querySelector("#answer-" + (i + 1)).textContent = answers[i];
+    // <button class="answer-text" id="answer-1" type="button"></button>
+    
+    let newButton = document.createElement("button");
+    newButton.setAttribute('class', "answer-text");
+    newButton.setAttribute('id', "answer-" + (i + 1));
+    newButton.setAttribute('type', "button");
+    newButton.textContent = answers[i];
+
+    ansDisplay.appendChild(newButton);
+
   }
 
 
