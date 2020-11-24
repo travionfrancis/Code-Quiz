@@ -109,7 +109,8 @@ function displayQuestion() {
   }
 
 
-
+// set up styles for the javascript answers
+  document.getElementsByClassName("answer1").style.color = "blue";
 
 
   // remove actual answer from answers list
