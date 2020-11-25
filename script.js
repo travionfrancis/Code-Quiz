@@ -13,6 +13,7 @@ var incorrectAns = [];
 var currentQuestionindex = 0;
 var gameTimerId;
 var counter = 60;
+var question;
 
 var correct = [2, 0, 3, 1, 1, 2];
 const allQuestions = [
@@ -60,32 +61,6 @@ const allQuestions = [
   },
 ];
 
-function askQuestion(question, index) {
-  var answer = prompt(question[0], "");
-  if (answer == question[1]) {
-    alert("Correct!");
-    score++;
-    correctAns = question;
-  } else {
-    incorrectAns.push(index);
-    alert("Sorry. The correct answer is " + question[1]);
-  }
-}
-
-function startQuestions() {}
-//didnt write up to here
-// array for answers
-var correct = [2, 0, 3, 1, 1, 2];
-
-// for (let i = 1; i <= 4; i++) {
-//   document
-//     .getElementById("answer-" + i)
-//     .parentElement.addEventListener("click", function () {
-//       chosen = i;
-//       compareAnswer();
-//       updateQuestion();
-//     });
-// }
 
 function displayQuestion() {
   // select a random question
@@ -98,8 +73,10 @@ function displayQuestion() {
   // put question on page
   document.querySelector(".question").textContent = question.question;
 
-    
-    
+
+  // clear out old choices, find out better way to do that than this
+  ansDisplay.innerHTML = "";
+  
 // put choices on page
   var answers = question.answers;
 
@@ -113,6 +90,8 @@ function displayQuestion() {
     newButton.setAttribute('id', "answer-" + (i + 1));
     newButton.setAttribute('type', "button");
     newButton.textContent = answers[i];
+
+    newButton.addEventListener("click", handleAnsClick);
 
     ansDisplay.appendChild(newButton);
 
@@ -151,6 +130,30 @@ function gameTimer() {
   }
 }
 
+function handleAnsClick(event) {
+  // check for correct answer
+
+  //take this event target and compare it to the correct answer 
+  console.log(event.target);
+  console.log(question);
+
+
+
+
+
+
+
+  // check for more
+  if (allQuestions.length >= 1) {
+    // if more questions
+    displayQuestion();
+  } else {
+    // else end game
+    end();
+  }
+
+
+}
 
 function start() {
   this.style.display = "none";
